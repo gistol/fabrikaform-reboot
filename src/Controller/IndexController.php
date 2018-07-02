@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IndexController extends Controller
 {
     /**
-     * @Route("/{slug}", name="index", requirements={"token"=".+"})
+     * @Route("/", name="index", requirements={"token"=".+"})
      */
     public function index($slug = '')
     {

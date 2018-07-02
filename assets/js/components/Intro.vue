@@ -1,6 +1,8 @@
 <template>
   <div>
-    Intro.vue
+    <div>
+      Intro.vue
+    </div>
     <router-link :to="{ name: 'Menu' }">Menu</router-link>
   </div>
 </template>
