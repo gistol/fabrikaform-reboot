@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div>
-      Media.vue
-    </div>
     <router-link :to="{ name: 'Intro' }">Intro</router-link>
     <router-link :to="{ name: 'Menu' }">Menu</router-link>
 
