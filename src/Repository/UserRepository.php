@@ -19,9 +19,9 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
+    /**
+     * @return User[] Returns an array of User objects
+     */
     /*
     public function findByExampleField($value)
     {
@@ -35,19 +35,6 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
      */
-
-    /**use App\Entity\User;
-     * use App\Entity\User;n account exist?
-     * use App\Entity\User;
-     * @return boolean
-     */
-    // public function doesAdminExist()
-    // {
-    //     return $this->createQueryBuilder('u')
-    //         ->andWhere('u.roles LIKE :ROLE_ADMIN')
-    //         ->getQuery()
-    //         ->getResult();
-    // }
 
     /*
     public function findOneBySomeField($value): ?User

@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="pos-r">
     <router-link :to="{ name: 'Intro' }">Intro</router-link>
     <router-link :to="{ name: 'Menu' }">Menu</router-link>
 
     <div>
       {{ media }}
     </div>
+    <router-link v-if="media.navigation.previous" :to="{ name: 'Media', params: {'id': media.navigation.previous} }">&lt;</router-link>
+    <router-link v-if="media.navigation.next" :to="{ name: 'Media', params: {'id': media.navigation.next} }">&gt;</router-link>
   </div>
 </template>
 
@@ -33,6 +35,11 @@ export default {
         .catch(e => {
           console.error(e);
         });
+    }
+  },
+  watch: {
+    $route() {
+      this.fetchData();
     }
   }
 };

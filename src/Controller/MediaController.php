@@ -25,10 +25,10 @@ class MediaController extends Controller
         $formatted = [];
         foreach ($medias as $media) {
             $formatted[] = [
-               'id' => $media->getId(),
-               'name' => $media->getName(),
-               'legend' => $media->getLegend(),
-               'image_url' => $media->getImage_url(),
+                'id' => $media->getId(),
+                'name' => $media->getName(),
+                'legend' => $media->getLegend(),
+                'image_url' => $media->getImage_url(),
             ];
         }
 
@@ -45,13 +45,19 @@ class MediaController extends Controller
             ->getRepository('App:Media')
             ->find($id);
 
+        $neighbours = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('App:Media')
+            ->getNeighbours($id);
+
         $formatted = [
             'id' => $media->getId(),
             'name' => $media->getName(),
             'legend' => $media->getLegend(),
             'image_url' => $media->getImage_url(),
+            'navigation' => $neighbours
         ];
 
         return new JsonResponse($formatted);
     }
+
 }

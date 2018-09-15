@@ -204,7 +204,7 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(-10vh);
+  // transform: translateY(-10vh);
 }
 
 .svg-wrapper {
@@ -247,6 +247,19 @@ svg {
   .c,
   .d {
     fill: none;
+  }
+
+  @keyframes pulse {
+    0% {
+      fill: #999;
+    }
+    100% {
+      fill: lighten(#999, 10%);
+    }
+  }
+
+  [data-entrance='hoverable'].b:not(:hover):not([data-visited='true']):not(.hint) {
+    animation: pulse 1s ease infinite alternate;
   }
 
   [data-entrance='hoverable'].f-p,
