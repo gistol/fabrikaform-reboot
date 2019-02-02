@@ -1,36 +1,57 @@
 <template>
   <div id="app">
     <div class="background" v-bind:class="{ loaded: isLoaded }"></div>
-    <div v-if="!isLoaded">loader</div>
-    <template v-else>
-      <router-view></router-view>
+
+    <transition
+      appear
+      enter-class="fade-enter"
+      enter-to-class="fade-enter-to"
+      enter-active-class="fade-delay-enter-active"
+    >
+      <div>
+        <Logo v-bind:isAppLoaded="isLoaded"></Logo>
+      </div>
+    </transition>
+
+    <template v-if="isLoaded">
+      <router-view class="main"></router-view>
     </template>
   </div>
 </template>
 
 <script>
-import { preloadImg } from './Tools';
-import backgroundURL from '../img/background.jpg';
+import { preloadImg } from "./Tools";
+import backgroundURL from "../img/background.jpg";
+import Logo from "./components/Logo.vue";
 
 export default {
-  name: 'app',
+  name: "app",
+  components: {
+    Logo
+  },
+
   data() {
     return {
       isLoaded: false
     };
   },
+
   async beforeCreate() {
     // preload common assets
     let start = new Date().getTime();
+
     preloadImg(backgroundURL).then(() => {
       let duration = new Date().getTime() - start;
-      // Set minimum loading time to 1 sec
-      if (duration < 1000) {
+      // For transition and animation purpose,
+      // set minimum loading time to 2 sec.
+      if (duration < 4000) {
         setTimeout(() => {
           this.isLoaded = true;
-        }, 1000 - duration);
+          this.$store.commit("setLoadingState", false);
+        }, 4000 - duration);
       } else {
         this.isLoaded = true;
+        this.$store.commit("setLoadingState", false);
       }
     });
   }
@@ -44,7 +65,9 @@ html {
   height: 100%;
 }
 
-#app > * {
+.background,
+.background:after,
+.main {
   position: absolute;
   top: 0;
   right: 0;
@@ -53,11 +76,15 @@ html {
 }
 
 .background {
-  opacity: 0;
-  transition: opacity 300ms ease;
+  &:after {
+    content: "";
+    display: block;
+    opacity: 0;
+    transition: opacity 800ms ease;
+  }
 
-  &.loaded {
-    background: url('../img/background.jpg');
+  &.loaded:after {
+    background: url("../img/background.jpg");
     opacity: 1;
   }
 }
@@ -66,8 +93,18 @@ html {
 .fade-enter-active {
   transition: opacity 0.25s ease-in;
 }
+
+.fade-delay-enter-active {
+  transition: opacity 0.5s ease-in 0.8s;
+}
+
 .fade-leave-active {
   transition: opacity 0.25s ease-out;
+}
+
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
 }
 
 .fade-enter,

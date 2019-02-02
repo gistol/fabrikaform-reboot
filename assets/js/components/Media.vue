@@ -3,19 +3,25 @@
     <router-link :to="{ name: 'Intro' }">Intro</router-link>
     <router-link :to="{ name: 'Menu' }">Menu</router-link>
 
-    <div>
-      {{ media }}
-    </div>
-    <router-link v-if="media.navigation.previous" :to="{ name: 'Media', params: {'id': media.navigation.previous} }">&lt;</router-link>
-    <router-link v-if="media.navigation.next" :to="{ name: 'Media', params: {'id': media.navigation.next} }">&gt;</router-link>
+    <div>{{ media }}</div>
+    <template v-if="media.navigation">
+      <router-link
+        v-if="media.navigation.previous"
+        :to="{ name: 'Media', params: {'id': media.navigation.previous} }"
+      >&lt;</router-link>
+      <router-link
+        v-if="media.navigation.next"
+        :to="{ name: 'Media', params: {'id': media.navigation.next} }"
+      >&gt;</router-link>
+    </template>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  name: 'Media',
+  name: "Media",
   data() {
     return {
       media: {}

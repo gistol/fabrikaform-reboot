@@ -29,7 +29,7 @@ class Media
     /**
      * @ORM\Column(type="string")
      */
-    protected $image_url;
+    protected $imageUrl;
 
     public function getId()
     {
@@ -46,9 +46,9 @@ class Media
         return $this->legend;
     }
 
-    public function getImage_url()
+    public function getImageUrl()
     {
-        return $this->image_url;
+        return $this->imageUrl;
     }
 
     public function setId($id)
@@ -69,9 +69,9 @@ class Media
         return $this;
     }
 
-    public function setImage_url($image_url)
+    public function setImageUrl($imageUrl)
     {
-        $this->image_url = $image_url;
+        $this->imageUrl = $imageUrl;
         return $this;
     }
 }

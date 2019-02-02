@@ -2,6 +2,43 @@
 
 {% block title %}{{ parent() }} | Dashboard{% endblock %}
 
-{% block body %}
-  Dashboard controller
+{% block content %}
+  <h1 class="d-none">Dashboard</h1>
+
+  <div class="card bg-light">
+    <div class="card-header">
+      <h2 class="h6 mb-0">Articles</h2>
+    </div>
+
+    <div class="card-body">
+      <table class="table mb-0">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="text-right">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Desc</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for media in medias %}
+            <tr>
+              <th class="align-middle text-muted text-right" scope="row">{{media.id}}</th>
+              <td class="align-middle font-weight-bold">
+                <a class="text-reset" href="{{ path('admin_media', {'id': media.id}) }}">
+                  {{media.name}}
+                </a>
+              </td>
+              <td class="align-middle text-muted small">{{media.legend|striptags[:20] ~ '...'}}</td>
+              <td class="align-middle text-right">
+                <a class="btn btn-primary btn-sm" href="{{ path('admin_media', {'id': media.id}) }}">edit</a>
+                <a class="btn btn-outline-danger btn-sm" href="{{ path('admin_media', {'id': media.id}) }}">delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock %}

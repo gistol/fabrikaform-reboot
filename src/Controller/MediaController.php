@@ -28,7 +28,7 @@ class MediaController extends Controller
                 'id' => $media->getId(),
                 'name' => $media->getName(),
                 'legend' => $media->getLegend(),
-                'image_url' => $media->getImage_url(),
+                'imageUrl' => $media->getImageUrl(),
             ];
         }
 
@@ -53,7 +53,7 @@ class MediaController extends Controller
             'id' => $media->getId(),
             'name' => $media->getName(),
             'legend' => $media->getLegend(),
-            'image_url' => $media->getImage_url(),
+            'imageUrl' => $media->getImageUrl(),
             'navigation' => $neighbours
         ];
 

@@ -5,20 +5,26 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\Media;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class LoginType extends AbstractType
+class MediaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('password');
+            // ->add('id')
+            ->add('name')
+            ->add('legend', TextareaType::class, [
+                'attr' => ['class' => 'tinymce'],
+            ])
+            ->add('imageUrl');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // 'data_class'      => User::class,
+            'data_class' => Media::class,
             // enable/disable CSRF protection for this form
             'csrf_protection' => true,
             // the name of the hidden HTML field that stores the token

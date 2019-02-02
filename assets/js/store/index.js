@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isLoading: true,
     menu: {
       isSet: false,
       items: []
@@ -12,9 +13,14 @@ export default new Vuex.Store({
   },
 
   getters: {
+    isLoading: state => {
+      return state.isLoading;
+    },
+
     menuIsSet: state => {
       return state.menu.isSet;
     },
+
     menuItems: state => {
       return state.menu.items;
     }
@@ -22,6 +28,10 @@ export default new Vuex.Store({
 
   // sync
   mutations: {
+    setLoadingState(state, payload) {
+      state.isLoading = payload;
+    },
+
     setMenuItems(state, payload) {
       state.menu.items = payload;
       if (!state.menu.isSet) {
