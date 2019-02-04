@@ -23,3 +23,7 @@ yarn-error.log
 ###< symfony/phpunit-bridge ###
 
 .vscode
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
