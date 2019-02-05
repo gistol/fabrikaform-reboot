@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Media;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,28 +16,23 @@ class AdminMediaController extends Controller
     public function index($id = null, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $media = $this->get('doctrine.orm.entity_manager')
-            ->getRepository('App:Media')
-            ->find($id);
+
+        if ($id) {
+            $media = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('App:Media')
+                ->find($id);
+        } else {
+            $media = new Media();
+        }
 
         $form = $this->createForm(MediaType::class, $media);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($media);
             $em->flush();
             return $this->redirectToRoute('dashboard');
         }
-
-        // $formatted = [];
-        // foreach ($medias as $media) {
-        //     $formatted[] = [
-        //         'id' => $media->getId(),
-        //         'name' => $media->getName(),
-        //         'legend' => $media->getLegend(),
-        //         'image_url' => $media->getImageurl(),
-        //     ];
-        // }
 
         return $this->render('admin/media/index.html.twig', [
             'controller_name' => 'AdminMediaController',
