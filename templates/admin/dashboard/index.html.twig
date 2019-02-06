@@ -37,7 +37,14 @@
               <td class="align-middle text-muted small">{{media.legend|striptags[:20] ~ '...'}}</td>
               <td class="align-middle text-right">
                 <a class="btn btn-outline-primary btn-sm" href="{{ path('admin_media', {'id': media.id}) }}">edit</a>
-                <a class="btn btn-outline-danger btn-sm" href="{{ path('admin_media', {'id': media.id}) }}">delete</a>
+                <button
+                  class="btn btn-outline-danger btn-sm"
+                  data-toggle="popover"
+                  data-content="<a href='#' class='btn btn-sm btn-outline-secondary mr-2'>Cancel</a><a class='btn btn-sm btn-danger' href='{{ path('admin_delete_media', {'id': media.id}) }}'>Delete</a>"
+                  data-html="true"
+                  tabindex="0"
+                  data-trigger="focus"
+                >delete</button>
               </td>
             </tr>
           {% endfor %}

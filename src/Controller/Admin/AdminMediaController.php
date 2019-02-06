@@ -40,4 +40,25 @@ class AdminMediaController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/fabrikadmin/media/{id}/delete", name="admin_delete_media")
+     */
+    public function deleteMedia($id = null, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if ($id) {
+            $entity = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('App:Media')
+                ->find($id);
+        }
+
+        if ($entity != null) {
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('dashboard');
+    }
 }
