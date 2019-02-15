@@ -47,7 +47,7 @@ class AdminImageController extends Controller
             $em->persist($image);
             $em->flush();
 
-            $this->addFlash('success', 'Image saved');
+            $this->addFlash('success', 'Image enregistrée');
             return $this->redirectToRoute('admin_image', [
                 'id' => $image->getId()
             ]);

@@ -31,7 +31,11 @@ class AdminMediaController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($media);
             $em->flush();
-            return $this->redirectToRoute('dashboard');
+
+            $this->addFlash('success', 'Media enregistré');
+            return $this->redirectToRoute('admin_media', [
+                'id' => $media->getId()
+            ]);
         }
 
         return $this->render('admin/media/index.html.twig', [

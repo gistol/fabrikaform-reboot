@@ -1,9 +1,23 @@
-#liip_imagine:
-#    # valid drivers options include "gd" or "gmagick" or "imagick"
-#    driver: "gd"
-#
-#    # define your filter sets under this option
-#    filter_sets:
+liip_imagine:
+  resolvers :
+    default :
+      # use the default web path
+      web_path : ~
+
+  filter_sets:
+    # use the default cache configuration
+    cache : ~
+
+    squared_thumbnail:
+      jpeg_quality:          85
+      png_compression_level: 8
+
+      filters:
+        thumbnail: { size : [80, 80], mode : outbound }
+
+
+
+
 #
 #        # an example thumbnail transformation definition
 #        # https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html#create-thumbnails

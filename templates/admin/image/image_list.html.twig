@@ -28,6 +28,7 @@
             <tr>
               <th class="align-middle text-muted text-right" scope="row">{{image.id}}</th>
               <td class="align-middle font-weight-bold">
+                <img src="{{ getImageUrl(image, 'squared_thumbnail') }}" alt="{{image.imageName}}" />
                 <a class="text-reset" href="{{ path('admin_image', {'id': image.id}) }}">
                   {{image.imageName}}
                 </a>

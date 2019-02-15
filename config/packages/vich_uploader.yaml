@@ -2,6 +2,14 @@ vich_uploader:
     db_driver: orm
 
     mappings:
+        # nom du mapping qui sera utilisé ailleurs dans la configuration
         images:
-            uri_prefix: '/images'
-            upload_destination: '%kernel.project_dir%/public/images'
+            uri_prefix: '%path_image%'
+            upload_destination: '%kernel.project_dir%/public/%path_image%'
+            namer: vich_uploader.namer_origname
+            directory_namer:
+                service: vich_uploader.directory_namer_subdir
+                options: {chars_per_dir: 3, dirs: 1}
+            inject_on_load: true
+            delete_on_remove: true # suppression du fichier à la suppression de l’entité
+            delete_on_update: true # suppression du fichier quand un nouveau fichier est envoyé

@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Image;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ImageType extends AbstractType
 {
@@ -18,7 +19,9 @@ class ImageType extends AbstractType
                 'delete_label' => 'Supprimer l\'image ?',
                 'required' => false
             ])
-            ->add('legend');
+            ->add('legend', TextType::class, [
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
