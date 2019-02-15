@@ -13,7 +13,6 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('id')
             ->add('name')
             ->add('legend', TextareaType::class, [
                 'attr' => ['class' => 'tinymce'],

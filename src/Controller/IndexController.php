@@ -13,7 +13,6 @@ class IndexController extends Controller
     public function index($slug = '')
     {
         return $this->render('base.html.twig', [
-            'controller_name' => 'IndexController',
             'slug' => $slug,
         ]);
     }

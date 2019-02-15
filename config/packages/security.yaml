@@ -22,6 +22,7 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 login_path: /fabrikadmin/login
                 check_path: /fabrikadmin/login
+                default_target_path: admin_dashboard
                 username_parameter: login[email]
                 password_parameter: login[password]
             # https://symfony.com/doc/current/security/form_login_setup.html

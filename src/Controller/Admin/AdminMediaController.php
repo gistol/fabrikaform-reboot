@@ -39,7 +39,6 @@ class AdminMediaController extends Controller
         }
 
         return $this->render('admin/media/index.html.twig', [
-            'controller_name' => 'AdminMediaController',
             'media' => $media,
             'form' => $form->createView()
         ]);
@@ -63,6 +62,6 @@ class AdminMediaController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('dashboard');
+        return $this->redirectToRoute('admin_dashboard');
     }
 }

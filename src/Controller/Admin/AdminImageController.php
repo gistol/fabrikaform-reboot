@@ -20,7 +20,6 @@ class AdminImageController extends Controller
             ->findAll();
 
         return $this->render('admin/image/image_list.html.twig', [
-            'controller_name' => 'ImageController',
             'images' => $images,
         ]);
     }
@@ -54,7 +53,6 @@ class AdminImageController extends Controller
         }
 
         return $this->render('admin/image/image.html.twig', [
-            'controller_name' => 'AdminImageController',
             'image' => $image,
             'form' => $form->createView()
         ]);

@@ -14,10 +14,10 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 
-class AuthenticationController extends Controller
+class AdminAuthenticationController extends Controller
 {
     /**
-     * @Route("/fabrikadmin/login", name="login")
+     * @Route("/fabrikadmin/login", name="admin_login")
      */
     public function index(AuthenticationUtils $authenticationUtils)
     {
@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
     }
 
     /**
-     * @Route("/fabrikadmin/registration", name="registration")
+     * @Route("/fabrikadmin/registration", name="admin_registration")
      */
     public function adminRegistration(Request $request)
     {
@@ -62,7 +62,7 @@ class AuthenticationController extends Controller
             $event = new InteractiveLoginEvent($request, $token);
             $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('admin_dashboard');
         }
 
         return $this->render('admin/authentication/index.html.twig', array(

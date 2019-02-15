@@ -3,24 +3,22 @@
 {% block title %}{{ parent() }} | Dashboard{% endblock %}
 
 {% block content %}
-  <h1 class="d-none">Images</h1>
-
   <div class="card bg-light">
     <div class="card-header">
-      <h2 class="h6 mb-0 d-inline">Images</h2>
+      <h1 class="h5 card-title mb-0 d-inline">Images</h1>
       <a class="btn btn-primary float-right" href="{{ path('admin_image') }}">
         <i class="material-icons align-middle mr-1">add</i>
         Ajouter une image
       </a>
     </div>
 
-    <div class="card-body">
+    <div class="card-body p-0">
       <table class="table mb-0">
         <thead class="thead-dark">
-            <th scope="col" class="text-right">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Size</th>
-            <th scope="col"></th>
+          <th scope="col" class="text-right">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Size</th>
+          <th scope="col"></th>
         </thead>
 
         <tbody>
