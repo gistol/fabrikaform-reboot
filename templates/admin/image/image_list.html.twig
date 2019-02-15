@@ -35,6 +35,14 @@
               <td class="align-middle text-muted">{{image.imageSize|filesize}}</td>
               <td class="align-middle text-right">
                 <a class="btn btn-outline-primary btn-sm" href="{{ path('admin_image', {'id': image.id}) }}">edit</a>
+                <button
+                  class="btn btn-outline-danger btn-sm"
+                  data-toggle="popover"
+                  data-content="<a href='#' class='btn btn-sm btn-outline-secondary mr-2'>Cancel</a><a class='btn btn-sm btn-danger' href='{{ path('admin_delete_image', {'id': image.id}) }}'>Delete</a>"
+                  data-html="true"
+                  tabindex="0"
+                  data-trigger="focus"
+                >delete</button>
               </td>
             </tr>
           {% endfor %}

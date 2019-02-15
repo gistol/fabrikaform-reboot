@@ -35,6 +35,18 @@
         </nav>
       {% endblock %}
 
+      {% block flashes %}
+        <div class="container">
+          {% for label, messages in app.flashes() %}
+            {% for message in messages %}
+              <div class="alert alert-{{ label }} mt-3">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      {% endblock %}
+
       <div class="container py-5">
         {% block content %}{% endblock %}
       </div>

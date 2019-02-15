@@ -46,7 +46,11 @@ class AdminImageController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($image);
             $em->flush();
-            return $this->redirectToRoute('admin_images');
+
+            $this->addFlash('success', 'Image saved');
+            return $this->redirectToRoute('admin_image', [
+                'id' => $image->getId()
+            ]);
         }
 
         return $this->render('admin/image/image.html.twig', [
@@ -56,24 +60,24 @@ class AdminImageController extends Controller
         ]);
     }
 
-    // /**
-    //  * @Route("/fabrikadmin/image/{id}/delete", name="admin_delete_image")
-    //  */
-    // public function deleteMedia($id = null, Request $request)
-    // {
-    //     $em = $this->getDoctrine()->getManager();
+    /**
+     * @Route("/fabrikadmin/image/{id}/delete", name="admin_delete_image")
+     */
+    public function deleteImage($id = null, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
 
-    //     if ($id) {
-    //         $entity = $this->get('doctrine.orm.entity_manager')
-    //             ->getRepository('App:Media')
-    //             ->find($id);
-    //     }
+        if ($id) {
+            $entity = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('App:Image')
+                ->find($id);
+        }
 
-    //     if ($entity != null) {
-    //         $em->remove($entity);
-    //         $em->flush();
-    //     }
+        if ($entity != null) {
+            $em->remove($entity);
+            $em->flush();
+        }
 
-    //     return $this->redirectToRoute('dashboard');
-    // }
+        return $this->redirectToRoute('admin_images');
+    }
 }

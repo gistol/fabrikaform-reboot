@@ -39,6 +39,11 @@ class Image
     private $imageSize;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $legend;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
@@ -73,7 +78,7 @@ class Image
         return $this->imageName;
     }
 
-    public function setImageName(string $imageName) : self
+    public function setImageName(? string $imageName) : self
     {
         $this->imageName = $imageName;
 
@@ -85,7 +90,7 @@ class Image
         return $this->imageSize;
     }
 
-    public function setImageSize(int $imageSize) : self
+    public function setImageSize(? int $imageSize) : self
     {
         $this->imageSize = $imageSize;
 
@@ -95,6 +100,17 @@ class Image
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    public function getLegend()
+    {
+        return $this->legend;
+    }
+
+    public function setLegend($legend)
+    {
+        $this->legend = $legend;
+        return $this;
     }
 
     public function getUpdatedAt() : ? \DateTimeInterface
